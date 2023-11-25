@@ -4,7 +4,16 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+To run the project you need to check if you have Node.js and npm installed.
+If not check the link below to see instructions:
+
+https://nodejs.org/en/download/package-manager
+
 First, run the development server:
+
+```bash
+npm install
+```
 
 ```bash
 npm run dev
