@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KonVal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/global.css" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="icon" href="./public/favicon.svg" type="image/svg+xml" />
+  </head>
+
+  <body class="page">
+    <header class="header">
+      <nav class="navigation">
+        <div class="header__logo">
+          <img
+            class="header__logo-image"
+            src="./public/logo.svg"
+            alt="Логотип"
+          />
+          <h2 class="header__logo-title">KonVal</h2>
+        </div>
+        <label class="language-switch-button"
+          ><input class="checkbox visually-hidden" type="checkbox" /><span
+            class="check-button isChecked">ru</span
+          ><span class="check-button">eng</span></label
+        >
+      </nav>
+      <h1 class="header__title">Конвертер валют</h1>
+    </header>
+    <main class="main">
+      <h2 class="sub-title">Онлайн конвертация валют</h2>
+      <section class="card-section">
+        <article class="card"></article>
+        <button class="card-section__converter-button">
+          <img
+            class="card-section__img"
+            src="./public/converter.svg"
+            alt="конвертация"
+          />
+        </button>
+        <article class="card"></article>
+      </section>
+      <section class="diagram-section">
+        <h2 class="sub-title">Динамика курса</h2>
+        <div class="diagram"></div>
+      </section>
+      <section class="main__decription">
+        <p class="main__decription-text">
+          Конвертер валют онлайн — инструмент, который позволит вам рассчитать
+          соотношения актуальных курсов денежных средств всего мира на сегодня.
+        </p>
+        <p class="main__decription-text">
+          Все переводы курсов конвертер осуществляет на основе стоимости валют
+          по данным ЦБ РФ.
+        </p>
+        <p class="main__decription-text">
+          Данные о котировках международных валют обновляются каждую минуту. Наш
+          калькулятор позволит вам быстро и точно сделать перевод курса таких
+          валют, как: российские рубли, украинские гривны, доллары США, евро,
+          белорусские рубли, тенге, тайские баты, юани, чешские кроны, корейские
+          воны.
+        </p>
+      </section>
+    </main>
+    <hr class="line" />
+    <footer class="footer">
+      <a href="https://www.cbr.ru/" class="bank-link" target="_blank"
+        >Банк России</a
+      >
+      <div class="super-mentor">
+        <p class="super-mentor__text">При поддержке</p>
+        <img class="super-mentor__img" src="./public/mentor-alt.png" alt="котик">
+        <p class="super-mentor__text">@cnaci6omapk</p>
+      </div>
+      <p class="sign">2023&nbsp;ооо &laquo;команда&nbsp;9&raquo;</p>
+    </footer>
+    <script src="./scripts/script.js"></script>
+  </body>
+</html>
