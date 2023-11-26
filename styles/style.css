@@ -157,9 +157,10 @@ letter-spacing: -0.45px;
 }
 
 .footer {
-  margin-top: 32px;
-  display: flex;
-  justify-content: space-between;
+  margin: 32px 80px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
   align-items: center;
 }
 
@@ -174,6 +175,7 @@ letter-spacing: -0.45px;
   text-decoration-line: underline;
   text-transform: uppercase;
   cursor: pointer;
+  justify-self: start;
 }
 
 .sign {
@@ -185,6 +187,7 @@ letter-spacing: -0.45px;
   line-height: normal;
   letter-spacing: -0.225px;
   text-transform: uppercase;
+  justify-self: end;
 }
 
 .super-mentor {
