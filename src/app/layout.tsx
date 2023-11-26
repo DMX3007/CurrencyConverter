@@ -1,6 +1,11 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import Image from 'next/image'
+
 import './globals.css'
+import './style.css'
+import Link from 'next/link'
+import Providers from './providers'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,8 +20,42 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <Providers>
+      <html lang='ru'>
+        <body className="page">
+          <main className="main">
+            {children}
+            <section className="main__decription">
+              <p className="main__decription-text">
+                Конвертер валют онлайн — инструмент, который позволит вам рассчитать
+                соотношения актуальных курсов денежных средств всего мира на сегодня.
+              </p>
+              <p className="main__decription-text">
+                Все переводы курсов конвертер осуществляет на основе стоимости валют
+                по данным ЦБ РФ.
+              </p>
+              <p className="main__decription-text">
+                Данные о котировках международных валют обновляются каждую минуту. Наш
+                калькулятор позволит вам быстро и точно сделать перевод курса таких
+                валют, как: российские рубли, украинские гривны, доллары США, евро,
+                белорусские рубли, тенге, тайские баты, юани, чешские кроны, корейские
+                воны.
+              </p>
+            </section>
+          </main>
+          <hr className="line" />
+          <footer className="footer">
+            <Link href="https://www.cbr.ru/" className="bank-link" target="_blank"
+            >Банк России</Link>
+            <div className="super-mentor">
+              <p className="super-mentor__text">При поддержке</p>
+              <Image width={32} height={32} className="super-mentor__img" src="/public/mentor-alt.png" alt="котик" />
+              <p className="super-mentor__text">@cnaci6omapk</p>
+            </div>
+            <p className="sign">2023&nbsp;ооо &laquo;команда&nbsp;9&raquo;</p>
+          </footer>
+        </body>
+      </html>
+    </Providers>
   )
 }

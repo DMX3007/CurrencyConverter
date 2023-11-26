@@ -1,88 +1,10 @@
-.page { 
+.page {
   width: 1440px;
   margin: 0 auto;
   padding: 65px 110px 32px;
 }
 
-.navigation {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
-.header__logo {
-  display: flex;
-  align-items: center;
-  gap: 22px;
-}
-
-.header__logo-title {
-text-align: center;
-font-family: Comfortaa, sans-serif;
-font-size: 30px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-letter-spacing: -0.45px;
-}
-
-.language-switch-button {
-  display: flex;
-  position: relative;
-  justify-content:center;
-  align-items: center;
-  width: 170px;
-  height: 40px;
-  text-align: center;
-  gap: 55px;
-  font-family: Comfortaa, sans-serif;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: -0.225px;
-  background-color: transparent;
-  border-radius: 6px;
-  border: 1px solid #26278D;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-.language-switch-button::after {
-  content: '';
-  position: absolute;
-  height: 100%;
-  width: 50%;
-  border-radius: 4px;
-  background-color: #26278D;
-  top: 0;
-  left: 0;
-}
-
-.check-button {
-  position: relative;
-  color: #26278D;
-  z-index: 1;
-}
-
-.isChecked {
-  color: white;
-}
-
-.language-switch-button:has(:checked)::after {
-  left: 50%;
-}
-
-.header__title {
-  margin-top: 55px;
-  text-align: center;
-  font-family: Comfortaa, sans-serif;
-  font-size: 48px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: -0.72px;
-}
 
 .main {
   margin: 50px 80px 80px;
@@ -180,7 +102,7 @@ letter-spacing: -0.45px;
 
 .sign {
   text-align: center;
-  font-family: Comfortaa,sans-serif;
+  font-family: Comfortaa, sans-serif;
   font-size: 15px;
   font-style: normal;
   font-weight: 500;
@@ -212,4 +134,14 @@ letter-spacing: -0.45px;
   width: 65px;
   height: 65px;
   border-radius: 50%;
+}
+
+.visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
