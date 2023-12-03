@@ -213,3 +213,107 @@ letter-spacing: -0.45px;
   height: 65px;
   border-radius: 50%;
 }
+
+.calc__switcher {
+  margin-block-start: 25px;
+  margin-block-end: 30px;
+  display: flex;
+  gap: 160px;
+}
+
+.calc__article {
+  border: 1px solid #26278D;
+  max-width: 450px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.calc__button-first,
+.calc__button-second {
+  background-color: transparent;
+  border: none;
+  width: 75px;
+  min-height: 34px;
+  padding: 5px 15px;
+  border-right: 1px solid #26278D;
+  cursor: pointer;
+}
+
+.calc__button-first:last-of-type,
+.calc__button-second:last-of-type {
+  border-right: none;
+  background: url(../svg/arrow.svg) no-repeat 50%;
+  color: transparent;
+}
+
+.calc__svg {
+  padding: 5px 15px;
+  width: 10px;
+}
+
+.active {
+  background-color: #26278D;
+  border: 1px solid #26278D;
+  border-radius: 6px;
+  color: #FFF;
+}
+
+.active.calc__button-first:last-of-type,
+.active.calc__button-second:last-of-type {
+  background-color: #26278D;
+  rotate: 180deg;
+}
+
+.dropdown-buttons {
+  display: none; /* Изначально скрыт */
+  max-width: 450px;
+  min-height: 215px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  box-sizing: border-box;
+  background: white;
+  position: absolute;
+  top: 45px;
+  left: 0;
+  z-index: 1000;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Распределяет кнопки равномерно */
+}
+
+/* Стили для кнопок внутри выпадающего списка */
+.dropdown-buttons button {
+  width: calc(50% - 10px); /* Вычитаем половину gap из ширины */
+  border-radius: 6px;
+  box-sizing: border-box;
+  text-align: left;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+
+  font-family: Comfortaa, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  letter-spacing: -0.21px;
+}
+
+.dropdown-button {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 30px;
+}
+.dropdown-button:hover {
+  background-color: #26278D;
+  border: 1px solid #26278D;
+  border-radius: 6px;
+  color: #FFFFFF;
+}
+.currency-code {
+  font-weight: bold;
+}
