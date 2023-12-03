@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  converter:
+    container_name: converter-app
+    restart: always
+    ports:
+      - 3000:3000
+    build:
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+      - /app/node_modules/
