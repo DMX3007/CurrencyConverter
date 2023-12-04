@@ -237,15 +237,12 @@ letter-spacing: -0.45px;
   width: 75px;
   min-height: 34px;
   padding: 5px 15px;
-  border-right: 1px solid #26278D;
   cursor: pointer;
 }
 
-.calc__button-first:last-of-type,
-.calc__button-second:last-of-type {
+.arrow {
   border-right: none;
   background: url(../svg/arrow.svg) no-repeat 50%;
-  color: transparent;
 }
 
 .calc__svg {
@@ -260,10 +257,10 @@ letter-spacing: -0.45px;
   color: #FFF;
 }
 
-.active.calc__button-first:last-of-type,
-.active.calc__button-second:last-of-type {
-  background-color: #26278D;
+.active.arrow {
   rotate: 180deg;
+  color: #FFFFFF;
+  background-image: url("/svg/arrow-white.svg");
 }
 
 .dropdown-buttons {
