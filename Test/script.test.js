@@ -86,3 +86,33 @@ describe('createDropdownButtons', () => {
         expect(dropdown.children.length).toBeGreaterThan(0); // Проверяем, что кнопки созданы
     });
 });
+
+
+function handleButtonGroup(buttons, dropdownId) {
+    buttons.forEach(function(button, index) {
+        button.addEventListener('click', function() {
+            const isLastButton = index === buttons.length - 1;
+
+            if (!isLastButton) {
+                removeActiveClass(buttons);
+                button.classList.add('active');
+                document.getElementById(dropdownId).style.display = 'none';
+            } else {
+                button.classList.toggle('active');
+                const dropdown = document.getElementById(dropdownId);
+                dropdown.style.display = button.classList.contains('active') ? 'flex' : 'none';
+            }
+        });
+    });
+}
+
+describe('handleButtonGroup', () => {
+    test('handles button group correctly', () => {
+        const dom = new JSDOM(`<div id="dropdownId"></div><button class="calc__button-first"></button>`);
+        global.document = dom.window.document;
+
+        const buttons = document.querySelectorAll('.calc__button-first');
+        handleButtonGroup(buttons, 'dropdownId');
+
+    });
+});
