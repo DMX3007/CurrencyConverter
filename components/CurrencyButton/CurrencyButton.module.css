@@ -1,0 +1,15 @@
+.calc__button {
+  background-color: transparent;
+  border: none;
+  width: 75px;
+  min-height: 34px;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+
+.active {
+  background-color: #26278D;
+  border: 1px solid #26278D;
+  border-radius: 6px;
+  color: #FFF;
+}

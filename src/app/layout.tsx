@@ -47,11 +47,11 @@ export default function RootLayout({
           <footer className="footer">
             <Link href="https://www.cbr.ru/" className="bank-link" target="_blank"
             >Банк России</Link>
-            <div className="super-mentor">
+            {/* <div className="super-mentor">
               <p className="super-mentor__text">При поддержке</p>
               <Image width={32} height={32} className="super-mentor__img" src="/public/mentor-alt.png" alt="котик" />
               <p className="super-mentor__text">@cnaci6omapk</p>
-            </div>
+            </div> */}
             <p className="sign">2023&nbsp;ооо &laquo;команда&nbsp;9&raquo;</p>
           </footer>
         </body>

@@ -1,6 +1,6 @@
 import { Chart } from 'react-chartjs-2';
 import { Chart as ChartClass, registerables } from 'chart.js';
-import useCurrencyData from '../../hooks/useCurrencyData';
+import { useTimeSeries } from '../../hooks/useCurrencyData';
 
 const api_key = "TvtPaidBzROSQKlLafq6OggeQ1QlnJyl";
 const base = "https://api.currencybeacon.com/v1";
@@ -9,19 +9,18 @@ ChartClass.register(...registerables);
 
 export default function ChartSection() {
 
-  const baseCurrency = 'RUB';
-  const symbols = ['USD',]; //'EUR', 'GBP', 'CNY'
-  const startDate = '2021-01-01';
+  const baseCurrency = 'USD';
+  const symbols = ['RUB',]; //'EUR', 'GBP', 'CNY'
+  const startDate = '2023-11-01';
 
   const endDate = new Date();
   const cookedEndDate = new Date().toISOString().split('T')[0]  // {YYYY-MM-DD};
   const week = (new Date(new Date().setDate(endDate.getDate() - 7)).toISOString().split('T')[0]);
-  const month = (new Date(new Date().setDate(endDate.getDate() - 31)));
-  const year = (new Date(new Date().setDate(endDate.getDate() - 365)));
+  const month = (new Date(new Date().setDate(endDate.getDate() - 31)).toISOString().split('T')[0]);
+  const year = (new Date(new Date().setDate(endDate.getDate() - 200)).toISOString().split('T')[0]);
 
 
-  const { data, isLoading, isError } = useCurrencyData(baseCurrency, symbols, undefined, week, cookedEndDate);
-
+  const { data, isLoading, isError } = useTimeSeries(baseCurrency, startDate, cookedEndDate, symbols);
 
   let dates = [];
   let values = [];
@@ -29,6 +28,9 @@ export default function ChartSection() {
   if (data) {
     dates = Array.from(Object.keys(data.response))
     values = Object.values(data.response).map(obj => Object.values(obj)[0]);
+
+    console.log(dates)
+    console.log(values)
   }
 
   if (isLoading) {
@@ -49,7 +51,7 @@ export default function ChartSection() {
             data={{
               labels: dates,
               datasets: [{
-                label: '# of Votes',
+                label: `currency of ${symbols[0]}`,
                 data: values,
                 borderWidth: 1
               }]

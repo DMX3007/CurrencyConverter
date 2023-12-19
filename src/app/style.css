@@ -1,10 +1,8 @@
 .page {
-  width: 1440px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 65px 110px 32px;
 }
-
-
 
 .main {
   margin: 50px 80px 80px;
@@ -23,12 +21,12 @@
 .card-section {
   display: flex;
   gap: 50px;
-  height: 230px;
+  min-height: 230px;
   margin-top: 25px;
 }
 
 .card {
-  width: 450px;
+  max-width: 450px;
   background-color: beige;
   border: 1px solid #26278D;
   border-radius: 6px;
@@ -82,7 +80,6 @@
   margin: 32px 80px 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-
   align-items: center;
 }
 
