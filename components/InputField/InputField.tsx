@@ -1,33 +1,20 @@
 import React, { useState, useRef } from 'react';
 import classNames from 'classnames';
 import styles from './InputField.module.css';
+import { Binder, InputBind } from './InputBind';
 
-const InputField = ({ currency, rate }: { currency: string, rate: number }) => {
-  const [inputValue, setInputValue] = useState(0);
-  const rub = 1;
-
-  // const textInputRef = useRef(null);
-
-  const setValue = (text) => {
-    setInputValue(text);
-  };
+const InputField = ({ currencyTo, currencyFrom, rate, inputValue }:
+  { currencyTo: string, currencyFrom: string, rate: number, inputValue: Binder }) => {
+  const MINIMAL = 1;
 
   return (
     <div className={styles.input}>
       <div className={styles.input_wbr}>
-        <textarea
-          id="textInput"
-          value={inputValue}
-          onChange={(e) => setValue(e.target.value)}
-          // ref={textInputRef}
-          className={classNames(styles.input_push, styles.colorBlue)}
-          type="number"
-          placeholder="1"
-        />
+        <InputBind value={inputValue} />
         <img className={styles.country_flag} src="" alt="" />
       </div>
       <p className={styles.valute_value}>
-        {rub} RUB = {Math.round((rub / rate) * 10000) / 10000} {currency}
+        {MINIMAL} {currencyFrom} = {(Math.round((MINIMAL / rate) * 10000) / 10000).toFixed(2)} {currencyTo}
       </p>
     </div>
   );

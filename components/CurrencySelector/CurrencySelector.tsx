@@ -8,24 +8,41 @@ import convert from '../../public/converter.svg'
 import InputField from "../InputField/InputField";
 import ArrowSvg from "../../svg/ArrowSvg";
 import OutputField from "../OutputField/OutputField";
+import { useLatest } from '../../hooks/useCurrencyData';
+import { useBind } from "../InputField/InputBind";
 
 export default function CurrencySelector() {
 
-  const currencies = ['RUB', 'USD', 'EUR', 'GBR', 'CNY'];
+  const currencies = ['RUB', 'USD', 'EUR', 'GBP', 'CNY'];
 
-  const [isActiveLeft, setIsActiveLeft] = useState<number>(0);
-  const [isActiveRight, setIsActiveRight] = useState<number>(1);
-  const [isOpened, setIsOpened] = useState(false);
-  const [isOpenedRight, setIsOpenedRight] = useState(false);
+  const [currencyFrom, setCurrencyFrom] = useState(currencies[0]);
+  const [currencyTo, setCurrencyTo] = useState(currencies[1]);
 
-  const clickHandler = (index: number, cb: Dispatch<SetStateAction<number>>) => {
+  const inputValue = useBind('1');
+
+  const [isActiveFrom, setIsActiveFrom] = useState<number>(0);
+  const [isActiveTo, setIsActiveTo] = useState<number>(1);
+  const [isOpenedFrom, setIsOpenedFrom] = useState(false);
+  const [isOpenedTo, setIsOpenedTo] = useState(false);
+
+  const clickHandler = (index: number, cb: Dispatch<SetStateAction<number>>, cbCur: Dispatch<SetStateAction<string>>) => {
     cb(index);
+    cbCur(currencies[index]);
   }
 
   const handleOpened = (cb: Dispatch<SetStateAction<boolean>>) => {
     cb(current => !current)
   }
 
+  const { data, isLoading, isError } = useLatest(currencyFrom, currencies, currencyFrom);
+
+  if (isLoading) {
+    return <div>Data is loading</div>
+  }
+
+  if (isError) {
+    return <div>Try again</div>
+  }
   return (
     <>
       <h2 className={styles['sub-title']}>Онлайн конвертация валют</h2>
@@ -34,24 +51,28 @@ export default function CurrencySelector() {
           <article className={styles.calc__article}>
             {currencies.map((cur, ind) => (<CurrencyButton
               key={cur}
-              active={isActiveLeft === ind}
+              active={isActiveFrom === ind}
               content={cur}
-              onClick={() => clickHandler(ind, setIsActiveLeft)} />
+              onClick={() => clickHandler(ind, setIsActiveFrom, setCurrencyTo)} />
             ))}
             <button
               type="button"
-              className={isOpened ?
+              className={isOpenedFrom ?
                 classNames(styles.arrow, styles.active)
                 : styles.arrow
               }
-              style={isOpened ? { fill: 'white' } : { fill: 'black' }}
-              onClick={() => handleOpened(setIsOpened)}
+              style={isOpenedFrom ? { fill: 'white' } : { fill: 'black' }}
+              onClick={() => handleOpened(setIsOpenedFrom)}
             >
-              <ArrowSvg color={isOpened ? 'white' : 'black'} />
+              <ArrowSvg color={isOpenedFrom ? 'white' : 'black'} />
             </button>
-            <DropDownButtons identifier={'dropdown-first'} isOpened={isOpened} />
+            <DropDownButtons identifier={'dropdown-first'} isOpened={isOpenedFrom} />
           </article>
-          <InputField currency="RUB" rate={12} />
+          <InputField
+            inputValue={inputValue}
+            currencyFrom={currencyFrom}
+            currencyTo={currencyTo}
+            rate={data! && data?.rates[currencyTo]} />
         </div>
 
         <button className={styles['card-section__converter-button']}>
@@ -59,8 +80,6 @@ export default function CurrencySelector() {
             className={styles["card-section__img"]}
             src={convert}
             alt="конвертация"
-            width={32}
-            height={32}
           />
         </button>
         <div className={styles.calc__group}>
@@ -68,23 +87,27 @@ export default function CurrencySelector() {
             {currencies.map((cur, ind) =>
             (<CurrencyButton
               key={cur}
-              active={isActiveRight === ind}
+              active={isActiveTo === ind}
               content={cur}
-              onClick={() => clickHandler(ind, setIsActiveRight)} />
+              onClick={() => clickHandler(ind, setIsActiveTo, setCurrencyFrom)} />
             ))}
             <button
               type="button"
-              className={isOpenedRight ?
+              className={isOpenedTo ?
                 classNames(styles.arrow, styles.active) :
                 styles.arrow
               }
-              onClick={() => handleOpened(setIsOpenedRight)}
+              onClick={() => handleOpened(setIsOpenedTo)}
             >
-              <ArrowSvg color={isOpenedRight ? 'white' : 'black'} />
+              <ArrowSvg color={isOpenedTo ? 'white' : 'black'} />
             </button>
-            <DropDownButtons identifier={'dropdown-second'} isOpened={isOpenedRight} />
+            <DropDownButtons identifier={'dropdown-second'} isOpened={isOpenedTo} />
           </article>
-          <OutputField currencyFrom="RUB" currencyTo="USD" rate={22} />
+          <OutputField
+            value={inputValue}
+            currencyFrom={currencyFrom}
+            currencyTo={currencyTo}
+            rate={data! && data.rates[currencyTo]} />
         </div>
       </section >
     </>

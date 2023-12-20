@@ -128,9 +128,9 @@ export const useCurrencyList = () => {
   });
 };
 
-export const useLatest = (base = "RUB", symbols) => {
+export const useLatest = (base, symbols, key) => {
   return useQuery<CurrencyLatest>({
-    queryKey: ["latest"],
+    queryKey: [key],
     queryFn: () => getLatestRates(base, symbols),
   });
 };
