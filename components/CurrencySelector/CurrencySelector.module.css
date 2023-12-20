@@ -15,6 +15,7 @@
 .calc__group {
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
 .calc__article {
