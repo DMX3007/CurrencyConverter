@@ -13,30 +13,23 @@ const InputField = ({ currency, rate }: { currency: string, rate: number }) => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.input}>
-        <div className={styles.input_wbr}>
-          <textarea
-            id="textInput"
-            value={inputValue}
-            onChange={(e) => setValue(e.target.value)}
-            // ref={textInputRef}
-            className={classNames(styles.input_push, styles.colorBlue)}
-            type="number"
-            placeholder="1"
-          />
-          <img className={styles.country_flag} src="" alt="" />
-        </div>
-        <p className={styles.valute_value}>
-          {rub} RUB = {Math.round((rub / rate) * 10000) / 10000} {currency}
-        </p>
+    <div className={styles.input}>
+      <div className={styles.input_wbr}>
+        <textarea
+          id="textInput"
+          value={inputValue}
+          onChange={(e) => setValue(e.target.value)}
+          // ref={textInputRef}
+          className={classNames(styles.input_push, styles.colorBlue)}
+          type="number"
+          placeholder="1"
+        />
+        <img className={styles.country_flag} src="" alt="" />
       </div>
-
-
-
-
+      <p className={styles.valute_value}>
+        {rub} RUB = {Math.round((rub / rate) * 10000) / 10000} {currency}
+      </p>
     </div>
-
   );
 };
 

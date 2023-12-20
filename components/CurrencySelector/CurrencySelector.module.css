@@ -1,12 +1,24 @@
 .calc__switcher {
   margin-block-start: 25px;
   margin-block-end: 30px;
-  /* display: flex; */
+  display: flex;
   /* gap: 160px; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @media (min-width: 1280px) {
+    flex-direction: row;
+  }
+}
+
+.calc__group {
+  display: flex;
+  flex-direction: column;
 }
 
 .calc__article {
-  border: 1px solid #26278D;
+  outline: 1px solid #26278D;
   max-width: 450px;
   border-radius: 6px;
   display: flex;
@@ -39,7 +51,7 @@
 
 .active {
   background-color: #26278D;
-  border: 1px solid #26278D;
+  outline: 1px solid #26278D;
   border-radius: 6px;
   color: #FFF;
 }
@@ -98,7 +110,7 @@
 
 .dropdown-button:hover {
   background-color: #26278D;
-  border: 1px solid #26278D;
+  outline: 1px solid #26278D;
   border-radius: 6px;
   color: #FFFFFF;
 }

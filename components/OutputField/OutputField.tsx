@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './OutputField.module.css'
 
-export default function OutputField({ currency, rate }: { currency: string, rate: number }) {
+export default function OutputField({ currencyFrom, currencyTo, rate }: { currencyFrom: string, currencyTo: string, rate: number }) {
   const [res, setRes] = useState(0);
   const calc = () => {
     setRes(inputValue * rate);
@@ -13,7 +13,7 @@ export default function OutputField({ currency, rate }: { currency: string, rate
         <p className={styles.result_par}>{res}</p>
         <img className={styles.country_flag} src="" alt="" />
       </div>
-      <p className={styles.valute_value}>1 USD = {rate} RUB</p>
+      <p className={styles.valute_value}>1 {currencyTo} = {rate} {currencyFrom}</p>
     </div>
   )
 }
