@@ -127,11 +127,39 @@ letter-spacing: -0.45px;
   padding-top: 20px;
 }
 
-.diagram {
+.diagram-field {
+  display: flex;
+  gap: 35px;
   margin-top: 20px;
   height: 407px;
-  background-color: beige;
   border: 1px solid #26278D;
+}
+
+.diagram {
+  background-color: beige;
+  border-right: 1px solid #26278D;
+  height: 100%;
+  width: 100%;
+}
+
+.sub-diagram-field {
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+  min-width: 429px;
+}
+
+.sub-diagram {
+  border-right: none;
+  border-left: 1px solid #26278D;
+}
+
+.sub-diagram:first-child {
+  border-bottom: 1px solid #26278D;
+}
+
+.sub-diagram:last-child {
+  border-top: 1px solid #26278D;
 }
 
 .main__decription {
