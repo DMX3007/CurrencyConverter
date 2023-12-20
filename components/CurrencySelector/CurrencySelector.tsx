@@ -4,8 +4,10 @@ import styles from './CurrencySelector.module.css';
 import classNames from "classnames";
 import { Dispatch, SetStateAction, useState } from "react";
 import CurrencyButton from "../CurrencyButton/CurrencyButton";
-import arrow from '../../public/arrow.svg'
 import convert from '../../public/converter.svg'
+import InputField from "../InputField/InputField";
+import ArrowSvg from "../../svg/ArrowSvg";
+import OutputField from "../OutputField/OutputField";
 
 export default function CurrencySelector() {
 
@@ -41,12 +43,14 @@ export default function CurrencySelector() {
               classNames(styles.arrow, styles.active)
               : styles.arrow
             }
+            style={isOpened ? { fill: 'white' } : { fill: 'black' }}
             onClick={() => handleOpened(setIsOpened)}
           >
-            <Image src={arrow} alt="arrow" objectFit="true" />
+            <ArrowSvg color={isOpened ? 'white' : 'black'} />
           </button>
           <DropDownButtons identifier={'dropdown-first'} isOpened={isOpened} />
         </article>
+        <InputField currency="RUB" rate={12} />
 
         <button className={styles['card-section__converter-button']}>
           <Image
@@ -73,10 +77,11 @@ export default function CurrencySelector() {
             }
             onClick={() => handleOpened(setIsOpenedRight)}
           >
-            <Image src={arrow} alt="arrow" objectFit="true" />
+            <ArrowSvg color={isOpenedRight ? 'white' : 'black'} />
           </button>
           <DropDownButtons identifier={'dropdown-second'} isOpened={isOpenedRight} />
         </article>
+        <OutputField currency="RUB" rate={22} />
       </section >
     </>
   )

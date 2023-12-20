@@ -1,7 +1,7 @@
 .calc__switcher {
   margin-block-start: 25px;
   margin-block-end: 30px;
-  display: flex;
+  /* display: flex; */
   /* gap: 160px; */
 }
 
@@ -12,6 +12,7 @@
   display: flex;
   align-items: center;
   position: relative;
+  justify-content: space-between;
 }
 
 .calc__button-first,
@@ -25,7 +26,8 @@
 }
 
 .arrow {
-  /* border: none; */
+  border: none;
+  outline: none;
   border-right: none;
   background: url(/svg/arrow.svg) no-repeat 50%;
 }
@@ -108,7 +110,7 @@
 .card-section__converter-button {
   width: 60px;
   height: 60px;
-  margin-top: 117px;
+  /* margin-top: 117px; */
   background-color: transparent;
   border: none;
   border-radius: 50%;

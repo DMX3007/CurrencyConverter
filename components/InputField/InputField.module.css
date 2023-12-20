@@ -1,0 +1,81 @@
+.container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1140px;
+}
+
+.wbr {
+  display: flex;
+  align-items: center;
+}
+
+.crossing {
+  width: 60px;
+  height: 60px;
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+.input {
+  min-width: 344px;
+  max-width: 450px;
+  border: 1px solid #26278d;
+  padding: 45px 55px 20px 25px;
+}
+
+.input_wbr {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input_push {
+  color: #26278d;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.72px;
+  border: none;
+  box-sizing: border-box;
+  width: 200px;
+  height: 59px;
+  min-height: 59px;
+  overflow: hidden;
+  resize: none;
+}
+
+.input_push:active {
+  outline: 0;
+  outline-offset: 0;
+}
+
+.country_flag {
+  border: 1px solid red;
+  border-radius: 28px;
+  width: 56px;
+  height: 56px;
+}
+
+.valute_value {
+  color: #3e3c3c;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 200;
+  line-height: normal;
+  margin-top: 16px;
+}
+
+.result_par {
+  color: #26278d;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.72px;
+}
