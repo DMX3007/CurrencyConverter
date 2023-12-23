@@ -52,12 +52,12 @@
   gap: 35px;
   margin-top: 20px;
   height: 407px;
-  border: 1px solid #26278D;
+  /* border: 1px solid #26278D; */
 }
 
 .diagram {
   /* background-color: beige; */
-  border-right: 1px solid #26278D;
+  /* border-right: 1px solid #26278D; */
   /* height: 100%; */
   /* width: 100%; */
   max-width: 593px;
@@ -72,15 +72,15 @@
 
 .sub-diagram {
   border-right: none;
-  border-left: 1px solid #26278D;
+  /* border-left: 1px solid #26278D; */
 }
 
 .sub-diagram:first-child {
-  border-bottom: 1px solid #26278D;
+  /* border-bottom: 1px solid #26278D; */
 }
 
 .sub-diagram:last-child {
-  border-top: 1px solid #26278D;
+  /* border-top: 1px solid #26278D; */
 }
 
 .main__decription {

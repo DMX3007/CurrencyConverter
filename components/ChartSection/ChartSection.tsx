@@ -5,31 +5,34 @@ import classNames from 'classnames';
 import styles from './ChartSection.module.css'
 import { useState } from 'react';
 
-const api_key = "TvtPaidBzROSQKlLafq6OggeQ1QlnJyl";
-const base = "https://api.currencybeacon.com/v1";
-
 ChartClass.register(...registerables);
 
-export default function ChartSection() {
+interface ChartSectionI {
+  baseCurrency: string,
+  alternativeCurrency: string,
+  alternativeCurrency2: string,
+  symbols: [string]
+}
 
-  const duration = ['день', 'неделя', 'квартал', 'год'];
+export default function ChartSection({ baseCurrency = 'USD', alternativeCurrency = 'EUR', alternativeCurrency2 = 'CNY', symbols = ['RUS'] }: ChartSectionI) {
+
+  const duration = ['неделя', 'месяц', 'квартал', 'год'];
   const [selectedDuration, setSelectedDuration] = useState(0);
 
-  const handleActive = (ind) => {
+  const handleActive = (ind: number) => {
     setSelectedDuration(ind);
   }
-
 
   let endDate;
 
   switch (selectedDuration) {
-    case 0: // day
+    case 0: // week
       endDate = (new Date(new Date().setDate(new Date()!.getDate() - 7)).toISOString().split('T')[0]);
       break;
-    case 1: // week
+    case 1: // month
       endDate = (new Date(new Date().setDate(new Date().getDate() - 31)).toISOString().split('T')[0]);
       break;
-    case 2: // month
+    case 2: // quart
       endDate = (new Date(new Date().setDate(new Date().getDate() - 150)).toISOString().split('T')[0]);
       break;
     case 3: // year
@@ -39,20 +42,14 @@ export default function ChartSection() {
       endDate = new Date().toISOString().split('T')[0];
   }
 
-  const baseCurrency = 'USD';
-  const additionalCurrency = 'EUR';
-  const additionalCurrency2 = 'CNY';
-  const symbols = ['RUB',]; //'EUR', 'GBP', 'CNY'
-
   const { data, isLoading, isError } =
-    useTimeSeries(baseCurrency, endDate, new Date().toISOString().split('T')[0], symbols, new Date().toString());
+    useTimeSeries(baseCurrency, endDate, new Date().toISOString().split('T')[0], symbols, baseCurrency + selectedDuration);
 
   const { data: data2, isLoading: isLoading2, isError: isError2 } =
-    useTimeSeries(additionalCurrency, endDate, new Date().toISOString().split('T')[0], symbols, symbols[0] + new Date().toString());
+    useTimeSeries(alternativeCurrency, endDate, new Date().toISOString().split('T')[0], symbols, alternativeCurrency + selectedDuration);
 
   const { data: data3, isLoading: isLoading3, isError: isError3 } =
-    useTimeSeries(additionalCurrency2, endDate, new Date().toISOString().split('T')[0], symbols, new Date().toString());
-
+    useTimeSeries(alternativeCurrency2, endDate, new Date().toISOString().split('T')[0], symbols, alternativeCurrency2 + selectedDuration);
 
   const prepareData = (rawData: CurrencyTimeSeries) => {
     const dates = Array.from(Object.keys(rawData.response)).map(el => el.slice(5).split('-').reverse().join("."));
@@ -61,7 +58,7 @@ export default function ChartSection() {
 
   const prepareValue = (rawData: CurrencyTimeSeries) => {
     const values = Object.values(rawData.response).map(obj => Object.values(obj)[0]);
-    return values;
+    return values
   }
 
   if (isLoading) {
@@ -70,6 +67,53 @@ export default function ChartSection() {
 
   if (isError) {
     return <div>Try again</div>
+  }
+
+  const config = {
+    labels: prepareData(data!),
+    datasets: [{
+      label: `${baseCurrency}`,
+      data: prepareValue(data!),
+      borderWidth: 3,
+      backgroundColor: '#26278D',
+      borderColor: '#26278D',
+      pointRadius: 0,
+    }]
+    ,
+  }
+
+  const options = {
+    plugins: {
+      legend: {
+        labels: {
+          font: {
+            size: 28
+          }
+        }
+      }
+    },
+    responsive: true,
+    locale: 'ru-RU',
+    scales: {
+      x: {
+        ticks: {
+          font: {
+            size: 20
+          }
+        },
+      },
+      y: {
+        min: Math.min(...prepareValue(data!)) - 5,
+        max: Math.max(...prepareValue(data!)) + 5,
+
+        ticks: {
+          font: {
+            size: 20
+          }
+        },
+        beginAtZero: true,
+      }
+    }
   }
 
   return (
@@ -85,75 +129,34 @@ export default function ChartSection() {
         <div className="diagram-field">
           <Chart
             className='diagram'
-
+            style={{ borderRadius: '10px' }}
             type='line'
-            data={{
-              labels: prepareData(data),
-              datasets: [{
-                label: `currency of ${symbols[0]}`,
-                data: prepareValue(data),
-                borderWidth: 1,
-              }]
-              ,
-            }}
-            options={
-              {
-                plugins: {
-                  legend: {
-                    labels: {
-                      font: {
-                        size: 28
-                      }
-                    }
-                  }
-                },
-                responsive: true,
-                locale: 'ru-RU',
-                scales: {
-                  x: {
-                    ticks: {
-                      font: {
-                        size: 20
-                      }
-                    },
-                    grid: {
-                      color: '#26278D',
-                    }
-                  },
-                  y: {
-                    ticks: {
-                      font: {
-                        size: 20
-                      }
-                    },
-                    beginAtZero: true,
-                  }
-                }
-                // , plugins: {
-                //   decimation: {
-                //     enabled: true,
-                //     algorithm: 'min-max',
-                //   }
-                // }
-              }
-            }
+            data={config}
+            options={options}
           />
           <div className="sub-diagram-field">
             {data2 ? <Chart
               className='diagram sub-diagram'
               type='line'
+              style={{ borderRadius: '10px' }}
+
               data={{
                 labels: prepareData(data2),
                 datasets: [{
-                  label: `currency of ${symbols[0]}`,
+                  label: `${alternativeCurrency}`,
                   data: prepareValue(data2),
-                  borderWidth: 1
+                  borderWidth: 3,
+                  backgroundColor: '#26278D',
+                  borderColor: '#26278D',
+                  pointRadius: 0,
                 }]
                 ,
               }}
               options={{
                 scales: {
                   y: {
+                    min: Math.min(...prepareValue(data2!)) - 5,
+                    max: Math.max(...prepareValue(data2!)) + 5,
                     beginAtZero: true,
                   }
                 }
@@ -163,25 +166,31 @@ export default function ChartSection() {
             {data3 ? <Chart
               className='diagram sub-diagram'
               type='line'
+              style={{ borderRadius: '10px' }}
+
               data={{
                 labels: prepareData(data3),
                 datasets: [{
-                  label: `currency of ${symbols[0]}`,
+                  label: `${alternativeCurrency2}`,
                   data: prepareValue(data3),
-                  borderWidth: 1
+                  borderWidth: 3,
+                  backgroundColor: '#26278D',
+                  borderColor: '#26278D',
+                  pointRadius: 0,
                 }]
                 ,
               }}
               options={{
                 scales: {
                   y: {
+                    min: Math.min(...prepareValue(data3!)) - 5,
+                    max: Math.max(...prepareValue(data3!)) + 5,
                     beginAtZero: true,
                   }
                 }
               }
               }
             /> : []}
-
           </div>
         </div>
         : []

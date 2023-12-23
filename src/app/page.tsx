@@ -9,9 +9,7 @@ export default function Home() {
     <main>
       <Header />
       <CurrencySelector />
-
-      <ChartSection />
-
+      <ChartSection baseCurrency={'USD'} alternativeCurrency={'CNY'} alternativeCurrency2={'BYN'} symbols={['RUB']} />
     </main>
   )
 }
