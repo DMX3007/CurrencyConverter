@@ -1,5 +1,6 @@
 import Image from "next/image"
 import styles from "./Header.module.css"
+import logo from '../../public/logo.svg'
 let classNames = require('classnames');
 
 export default function Header() {
@@ -10,10 +11,8 @@ export default function Header() {
           <div className={styles.header__logo}>
             <Image
               className={styles.header__logo__image}
-              src="./public/logo.svg"
               alt="Логотип"
-              width={32}
-              height={32}
+              src={logo}
             />
             <h2 className={styles.header__logo__title}>KonVal</h2>
           </div>
