@@ -102,10 +102,11 @@ export const useTimeSeries = (
   base = "RUB",
   start_date: string,
   end_date: string,
-  symbols = ["USD"]
+  symbols = ["USD"],
+  key: string
 ) => {
   return useQuery<CurrencyTimeSeries>({
-    queryKey: ["timeSeries"],
+    queryKey: [key],
     queryFn: () => getTimeSeriesRates(base, start_date, end_date, symbols),
   });
 };

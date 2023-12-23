@@ -1,7 +1,7 @@
 'use client'
 import Header from '../../components/header/header';
 import CurrencySelector from '../../components/CurrencySelector/CurrencySelector';
-import ChartSection from '../../components/chart/chart';
+import ChartSection from '../../components/ChartSection/ChartSection';
 
 export default function Home() {
 
@@ -9,7 +9,8 @@ export default function Home() {
     <main>
       <Header />
       <CurrencySelector />
-      {/* <ChartSection /> */}
+
+      <ChartSection />
 
     </main>
   )
