@@ -4,7 +4,6 @@ import { Binder } from '../InputField/InputBind';
 
 export default function OutputField({ currencyFrom, currencyTo, rate, value }:
   { currencyFrom: string, currencyTo: string, rate: number, value: Binder }) {
-  console.log(rate)
   return (
     <div className={styles.input}>
       <div className={styles.input_wbr}>

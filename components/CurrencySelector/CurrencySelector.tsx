@@ -53,7 +53,7 @@ export default function CurrencySelector() {
               key={cur}
               active={isActiveFrom === ind}
               content={cur}
-              onClick={() => clickHandler(ind, setIsActiveFrom, setCurrencyTo)} />
+              onClick={() => clickHandler(ind, setIsActiveFrom, setCurrencyFrom)} />
             ))}
             <button
               type="button"
@@ -89,7 +89,7 @@ export default function CurrencySelector() {
               key={cur}
               active={isActiveTo === ind}
               content={cur}
-              onClick={() => clickHandler(ind, setIsActiveTo, setCurrencyFrom)} />
+              onClick={() => clickHandler(ind, setIsActiveTo, setCurrencyTo)} />
             ))}
             <button
               type="button"

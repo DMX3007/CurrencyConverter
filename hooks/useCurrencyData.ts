@@ -1,4 +1,5 @@
 import axios from "axios";
+import { isArray } from "chart.js/helpers";
 import { useQuery } from "react-query";
 
 export type CurrencyList = CurrencyItem[];
@@ -57,7 +58,6 @@ const getLatestRates = async (base: string, symbols: string[]) => {
   const url = `${API_BASE_URL}/latest?base=${base}&symbols=${symbols.join(
     ","
   )}&api_key=TvtPaidBzROSQKlLafq6OggeQ1QlnJyl`;
-  console.log(url);
   const response = await baseApi.get<CurrencyLatest>(url);
   return response.data;
 };
