@@ -13,7 +13,7 @@ import { useBind } from "../InputField/InputBind";
 
 export default function CurrencySelector() {
 
-  const currencies = ['RUB', 'USD', 'EUR', 'GBP', 'CNY'];
+  const [currencies, setCurrencies] = useState(['RUB', 'USD', 'EUR', 'GBP', 'CNY']);
 
   const [currencyFrom, setCurrencyFrom] = useState(currencies[0]);
   const [currencyTo, setCurrencyTo] = useState(currencies[1]);
@@ -24,6 +24,10 @@ export default function CurrencySelector() {
   const [isActiveTo, setIsActiveTo] = useState<number>(1);
   const [isOpenedFrom, setIsOpenedFrom] = useState(false);
   const [isOpenedTo, setIsOpenedTo] = useState(false);
+
+  const dropDownCurrencyChangeHandler = (value: string, ind: number) => {
+    setCurrencies(currencies.toSpliced(ind, 1, value));
+  }
 
   const clickHandler = (index: number, cb: Dispatch<SetStateAction<number>>, cbCur: Dispatch<SetStateAction<string>>) => {
     cb(index);
@@ -66,7 +70,7 @@ export default function CurrencySelector() {
             >
               <ArrowSvg color={isOpenedFrom ? 'white' : 'black'} />
             </button>
-            <DropDownButtons identifier={'dropdown-first'} isOpened={isOpenedFrom} />
+            <DropDownButtons changeCurrency={dropDownCurrencyChangeHandler} identifier={'dropdown-first'} isOpened={isOpenedFrom} />
           </article>
           <InputField
             inputValue={inputValue}
@@ -101,7 +105,7 @@ export default function CurrencySelector() {
             >
               <ArrowSvg color={isOpenedTo ? 'white' : 'black'} />
             </button>
-            <DropDownButtons identifier={'dropdown-second'} isOpened={isOpenedTo} />
+            <DropDownButtons changeCurrency={dropDownCurrencyChangeHandler} identifier={'dropdown-second'} isOpened={isOpenedTo} />
           </article>
           <OutputField
             value={inputValue}

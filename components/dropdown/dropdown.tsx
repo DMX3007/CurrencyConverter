@@ -4,6 +4,7 @@ import styles from "./DropDown.module.css"
 type DropDownButton = {
   identifier: 'dropdown-first' | 'dropdown-second',
   isOpened: boolean;
+  changeCurrency: (value: string, ind: number) => void;
 }
 
 export const DropDownButtons = (props: DropDownButton) => {
@@ -44,6 +45,7 @@ export const DropDownButtons = (props: DropDownButton) => {
           return (
             <button
               className={styles['dropdown-button']}
+              onClick={() => props.changeCurrency(el, ind)}
               key={ind}>
               <span className={styles['currency-name']}>
                 {defaultCurrencies[ind]?.name}
