@@ -14,7 +14,7 @@ const InputField = ({ currencyTo, currencyFrom, rate, inputValue }:
         <img className={styles.country_flag} src="" alt="" />
       </div>
       <p className={styles.valute_value}>
-        {MINIMAL} {currencyFrom} = {(Math.round((MINIMAL / rate) * 10000) / 10000).toFixed(2)} {currencyTo}
+        {MINIMAL} {currencyFrom} = {(Math.round((MINIMAL / rate) * 10000) / 10000).toFixed(4)} {currencyTo}
       </p>
     </div>
   );
