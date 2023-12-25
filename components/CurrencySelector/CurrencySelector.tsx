@@ -11,12 +11,22 @@ import OutputField from "../OutputField/OutputField";
 import { useLatest } from '../../hooks/useCurrencyData';
 import { useBind } from "../InputField/InputBind";
 
-export default function CurrencySelector() {
+interface CurrencySelectorI {
+  currencies: string[],
+  currencySelector: (value: string, ind: number) => void,
+  from: string,
+  to: string,
+  fromChanger: Dispatch<SetStateAction<string>>,
+  toChanger: Dispatch<SetStateAction<string>>,
+}
 
-  const [currencies, setCurrencies] = useState(['RUB', 'USD', 'EUR', 'GBP', 'CNY']);
+export default function CurrencySelector({ currencies,
+  currencySelector,
+  from,
+  to,
+  fromChanger,
+  toChanger }: CurrencySelectorI) {
 
-  const [currencyFrom, setCurrencyFrom] = useState(currencies[0]);
-  const [currencyTo, setCurrencyTo] = useState(currencies[1]);
 
   const inputValue = useBind('1');
 
@@ -25,11 +35,8 @@ export default function CurrencySelector() {
   const [isOpenedFrom, setIsOpenedFrom] = useState(false);
   const [isOpenedTo, setIsOpenedTo] = useState(false);
 
-  const dropDownCurrencyChangeHandler = (value: string, ind: number) => {
-    setCurrencies(currencies.toSpliced(ind, 1, value));
-  }
-
   const clickHandler = (index: number, cb: Dispatch<SetStateAction<number>>, cbCur: Dispatch<SetStateAction<string>>) => {
+    console.log('hi')
     cb(index);
     cbCur(currencies[index]);
   }
@@ -38,7 +45,7 @@ export default function CurrencySelector() {
     cb(current => !current)
   }
 
-  const { data, isLoading, isError } = useLatest(currencyFrom, currencies, currencyFrom);
+  const { data, isLoading, isError } = useLatest(from, currencies, from);
 
   if (isLoading) {
     return <div>Data is loading</div>
@@ -57,7 +64,7 @@ export default function CurrencySelector() {
               key={cur}
               active={isActiveFrom === ind}
               content={cur}
-              onClick={() => clickHandler(ind, setIsActiveFrom, setCurrencyFrom)} />
+              onClick={() => clickHandler(ind, setIsActiveFrom, fromChanger)} />
             ))}
             <button
               type="button"
@@ -70,13 +77,13 @@ export default function CurrencySelector() {
             >
               <ArrowSvg color={isOpenedFrom ? 'white' : 'black'} />
             </button>
-            <DropDownButtons changeCurrency={dropDownCurrencyChangeHandler} identifier={'dropdown-first'} isOpened={isOpenedFrom} />
+            <DropDownButtons changeCurrency={currencySelector} identifier={'dropdown-first'} isOpened={isOpenedFrom} />
           </article>
           <InputField
             inputValue={inputValue}
-            currencyFrom={currencyFrom}
-            currencyTo={currencyTo}
-            rate={data! && data?.rates[currencyTo]} />
+            currencyFrom={from}
+            currencyTo={to}
+            rate={data! && data?.rates[to]} />
         </div>
 
         <button className={styles['card-section__converter-button']}>
@@ -93,7 +100,7 @@ export default function CurrencySelector() {
               key={cur}
               active={isActiveTo === ind}
               content={cur}
-              onClick={() => clickHandler(ind, setIsActiveTo, setCurrencyTo)} />
+              onClick={() => clickHandler(ind, setIsActiveTo, toChanger)} />
             ))}
             <button
               type="button"
@@ -105,13 +112,13 @@ export default function CurrencySelector() {
             >
               <ArrowSvg color={isOpenedTo ? 'white' : 'black'} />
             </button>
-            <DropDownButtons changeCurrency={dropDownCurrencyChangeHandler} identifier={'dropdown-second'} isOpened={isOpenedTo} />
+            <DropDownButtons changeCurrency={currencySelector} identifier={'dropdown-second'} isOpened={isOpenedTo} />
           </article>
           <OutputField
             value={inputValue}
-            currencyFrom={currencyFrom}
-            currencyTo={currencyTo}
-            rate={data! && data.rates[currencyTo]} />
+            currencyFrom={from}
+            currencyTo={to}
+            rate={data! && data.rates[to]} />
         </div>
       </section >
     </>
