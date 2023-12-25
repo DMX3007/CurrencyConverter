@@ -10,7 +10,7 @@ export default function OutputField({ currencyFrom, currencyTo, rate, value }:
         <p className={styles.result_par}>{Number(+value.value * rate)?.toFixed(2)}</p>
         <img className={styles.country_flag} src="" alt="" />
       </div>
-      <p className={styles.valute_value}>1 {currencyFrom} = {rate?.toFixed(2)} {currencyTo} </p>
+      <p className={styles.valute_value}>1 {currencyTo} = {rate?.toFixed(4)} {currencyFrom} </p>
     </div>
   )
 }
