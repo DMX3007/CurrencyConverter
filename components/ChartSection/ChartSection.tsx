@@ -14,8 +14,8 @@ interface ChartSectionI {
   symbols: [string]
 }
 
-export default function ChartSection({ baseCurrency = 'USD', alternativeCurrency = 'EUR', alternativeCurrency2 = 'CNY', symbols = ['RUS'] }: ChartSectionI) {
-
+export default function ChartSection({ baseCurrency, alternativeCurrency, alternativeCurrency2, symbols }: ChartSectionI) {
+  console.log(baseCurrency)
   const duration = ['неделя', 'месяц', 'квартал', 'год'];
   const [selectedDuration, setSelectedDuration] = useState(0);
 
