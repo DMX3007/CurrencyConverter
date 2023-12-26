@@ -1,0 +1,79 @@
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.header__title {
+  margin-top: 55px;
+  text-align: center;
+  font-family: Comfortaa, sans-serif;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.72px;
+}
+
+.header__logo__title {
+  text-align: center;
+  font-family: Comfortaa, sans-serif;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.45px;
+}
+
+.language__switch_button {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 170px;
+  height: 40px;
+  text-align: center;
+  gap: 55px;
+  font-family: Comfortaa, sans-serif;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.225px;
+  background-color: transparent;
+  border-radius: 6px;
+  border: 1px solid #26278D;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.language__switch_button::after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  border-radius: 4px;
+  background-color: #26278D;
+  top: 0;
+  left: 0;
+}
+
+.check_button {
+  position: relative;
+  color: #26278D;
+  z-index: 1;
+}
+
+.isChecked {
+  color: white;
+}
+
+.language__switch_button:has(:checked)::after {
+  left: 50%;
+}

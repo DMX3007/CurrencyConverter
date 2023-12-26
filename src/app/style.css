@@ -1,0 +1,171 @@
+.page {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 65px 110px 99px;
+}
+
+.main {
+  margin: 50px 80px 80px;
+}
+
+.sub-title {
+  font-family: Comfortaa, sans-serif;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: uppercase;
+  margin-left: 5px;
+}
+
+.card-section {
+  display: flex;
+  gap: 50px;
+  height: 160px;
+  margin-top: 25px;
+}
+
+.card {
+  max-width: 450px;
+  background-color: beige;
+  border: 1px solid #26278D;
+  border-radius: 6px;
+}
+
+.card-section__converter-button {
+  align-self: center;
+  width: 60px;
+  height: 60px;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.diagram-section {
+  margin-top: 30px;
+  padding-top: 20px;
+}
+
+.diagram-field {
+  display: flex;
+  gap: 35px;
+  margin-top: 20px;
+  height: 407px;
+  /* border: 1px solid #26278D; */
+}
+
+.diagram {
+  /* background-color: beige; */
+  /* border-right: 1px solid #26278D; */
+  /* height: 100%; */
+  /* width: 100%; */
+  max-width: 593px;
+}
+
+.sub-diagram-field {
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+  min-width: 429px;
+}
+
+.sub-diagram {
+  border-right: none;
+  /* border-left: 1px solid #26278D; */
+}
+
+.sub-diagram:first-child {
+  /* border-bottom: 1px solid #26278D; */
+}
+
+.sub-diagram:last-child {
+  /* border-top: 1px solid #26278D; */
+}
+
+.main__decription {
+  margin-top: 85px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.main__decription-text {
+  color: rgba(0, 0, 0, 0.60);
+  text-align: justify;
+  font-family: Comfortaa, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 119.862%;
+  letter-spacing: 0.8px;
+}
+
+.line {
+  border: 1px solid #26278D;
+}
+
+.footer {
+  margin: 32px 80px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+}
+
+.bank-link {
+  text-align: center;
+  font-family: Comfortaa, sans-serif;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.225px;
+  text-decoration-line: underline;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.sign {
+  text-align: center;
+  font-family: Comfortaa, sans-serif;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.225px;
+  text-transform: uppercase;
+}
+
+.super-mentor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.super-mentor__text {
+  text-align: center;
+  font-family: Comfortaa, sans-serif;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.225px;
+  text-transform: lowercase;
+}
+
+.super-mentor__img {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+}
+
+.visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
